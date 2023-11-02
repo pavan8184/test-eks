@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: nginx.prudhvi.cloud4c
+      http:
+        paths:
+        - backend:
+            service:
+              name: app-service
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
